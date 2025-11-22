@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { FaArrowRight, FaPhone, FaEnvelope, FaHome, FaBroom, FaImage, FaQuoteLeft, FaStar } from "react-icons/fa";
+import { FaArrowRight, FaPhone, FaEnvelope, FaHome, FaBroom, FaImage, FaQuoteLeft, FaStar, FaTrash, FaBars, FaTimes } from "react-icons/fa";
 
 export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Placeholder: In production, send to backend/email service like Formspree or Nodemailer
     console.log("Form submitted:", formData);
     alert("Message sent! (Demo)");
     setFormData({ name: "", email: "", message: "" });
@@ -16,99 +16,112 @@ export default function Home() {
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false); // Close menu after clicking a link
   };
+
+  const navLinks = [
+    { name: "Home", id: "hero" },
+    { name: "About", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Gallery", id: "gallery" },
+    { name: "Testimonials", id: "testimonials" },
+    { name: "Contact", id: "contact" },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
       {/* Navbar */}
-      <nav className="sticky top-0 bg-black text-white shadow-md z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">The Grime Reaper</h1>
-          <ul className="flex space-x-6">
-            <li>
-              <button onClick={() => scrollToSection("hero")} className="hover:underline">
-                Home
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection("about")} className="hover:underline">
-                About
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection("services")} className="hover:underline">
-                Services
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection("gallery")} className="hover:underline">
-                Gallery
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection("testimonials")} className="hover:underline">
-                Testimonials
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection("contact")} className="hover:underline">
-                Contact
-              </button>
-            </li>
+      <nav className="sticky top-0 bg-white text-black shadow-md z-50">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Image src="/images/logo.jpg" alt="Grime Reaper" width={120} height={60} className="object-contain" />
+          </div>
+
+          {/* Desktop Menu - Hidden below 730px */}
+          <ul className="hidden max-[730px]:hidden lg:flex space-x-8">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <button onClick={() => scrollToSection(link.id)} className="hover:text-blue-600 hover:underline transition">
+                  {link.name}
+                </button>
+              </li>
+            ))}
           </ul>
+
+          {/* Mobile Menu Button - Visible only ≤730px */}
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-3xl z-50" aria-label="Toggle menu">
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Mobile Menu - Slides in from top */}
+        <div
+          className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+          } lg:hidden`}
+        >
+          <div className="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+            {navLinks.map((link) => (
+              <button key={link.id} onClick={() => scrollToSection(link.id)} className="hover:text-blue-600 transition">
+                {link.name}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex items-center justify-center text-center text-white">
-        <Image
-          src="https://contractor-plus-website.s3.us-east-2.amazonaws.com/Pressure_Washing_Business_3_4b3c207491.jpg"
-          alt="Pressure Washing Hero"
-          fill
-          className="object-cover brightness-50"
-        />
-        <div className="relative z-10">
+        <Image src="/images/pressure-wash.jpg" alt="Pressure Washing Hero" fill className="object-cover brightness-50" />
+        <div className="relative z-10 px-6">
           <h2 className="text-5xl font-bold mb-4">The Grime Reaper</h2>
           <p className="text-2xl mb-8">Slaying Grime One Wash at a Time</p>
-          <button onClick={() => scrollToSection("contact")} className="bg-blue-600 px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition">
-            Get a Free Quote <FaArrowRight className="inline ml-2" />
-          </button>
+          <a href="tel:8033704697">
+            <button className="bg-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition">
+              Call or Text for a Free Quote
+            </button>
+          </a>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8">About Us</h2>
-          <p className="text-lg max-w-3xl mx-auto text-center">
-            The Grime Reaper is your go-to pressure washing service, dedicated to banishing dirt, mold, and grime from your home or business. With
-            years of experience and eco-friendly techniques, we restore surfaces to their former glory without harming the environment. Whether
-            it&apos;s residential or commercial, we handle it all with precision and care.
+      <section id="about" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-8">About Us</h2>
+          <p className="text-lg max-w-3xl mx-auto leading-relaxed">
+            The Grime Reaper is Rock Hill’s trusted pressure washing service, dedicated to removing dirt, mold, and grime from homes and businesses
+            across the area. With years of local experience and eco-friendly cleaning techniques, we restore driveways, siding, decks, and other
+            surfaces to their original shine—keeping your property clean and safe without harming the environment.
           </p>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <FaHome className="text-4xl mx-auto mb-4 text-blue-600" />
-              <h3 className="text-2xl font-semibold mb-2">House Washing</h3>
-              <p>Remove dirt, algae, and stains from siding and exteriors.</p>
+      <section id="services" className="py-20 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+              <FaTrash className="text-5xl mx-auto mb-4 text-blue-600" />
+              <h3 className="text-2xl font-semibold mb-3">Trash Can Service</h3>
+              <p className="text-gray-600">Eliminate odors and bacteria with professional cleaning</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <FaBroom className="text-4xl mx-auto mb-4 text-blue-600" />
-              <h3 className="text-2xl font-semibold mb-2">Driveway Cleaning</h3>
-              <p>Blast away oil stains and grime for a spotless drive.</p>
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+              <FaHome className="text-5xl mx-auto mb-4 text-blue-600" />
+              <h3 className="text-2xl font-semibold mb-3">House Washing</h3>
+              <p className="text-gray-600">Safe soft washing for siding, brick, and stucco</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <FaImage className="text-4xl mx-auto mb-4 text-blue-600" />
-              <h3 className="text-2xl font-semibold mb-2">Deck & Patio Restoration</h3>
-              <p>Revive wood and concrete surfaces safely.</p>
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+              <FaBroom className="text-5xl mx-auto mb-4 text-blue-600" />
+              <h3 className="text-2xl font-semibold mb-3">Driveway Cleaning</h3>
+              <p className="text-gray-600">Remove oil, rust, and years of buildup</p>
             </div>
-            {/* Add more services as needed */}
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+              <FaImage className="text-5xl mx-auto mb-4 text-blue-600" />
+              <h3 className="text-2xl font-semibold mb-3">Deck & Patio</h3>
+              <p className="text-gray-600">Restore wood and concrete to look like new</p>
+            </div>
           </div>
         </div>
       </section>
@@ -203,10 +216,10 @@ export default function Home() {
               <p className="text-lg mb-4">Ready to reap the grime? Contact us today!</p>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <FaPhone className="mr-2" /> (123) 456-7890
+                  <FaPhone className="mr-2" /> <a href="tel:8033704697">(803) 370-4697</a>
                 </li>
                 <li className="flex items-center">
-                  <FaEnvelope className="mr-2" /> info@thegrimereaper.com
+                  <FaEnvelope className="mr-2" /> <a href="mailto:grimereaper@gmail.com">grimereaper@gmail.com</a>
                 </li>
               </ul>
             </div>
@@ -243,7 +256,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-4 text-center">
+      <footer className="bg-black text-white py-8 text-center">
         <p>&copy; 2025 The Grime Reaper. All rights reserved.</p>
       </footer>
     </div>
