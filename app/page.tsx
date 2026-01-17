@@ -102,22 +102,22 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
               <FaTrash className="text-5xl mx-auto mb-4 text-blue-600" />
               <h3 className="text-2xl font-semibold mb-3">Trash Can Service</h3>
               <p className="text-gray-600">Eliminate odors and bacteria with professional cleaning</p>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
               <FaHome className="text-5xl mx-auto mb-4 text-blue-600" />
               <h3 className="text-2xl font-semibold mb-3">House Washing</h3>
               <p className="text-gray-600">Safe soft washing for siding, brick, and stucco</p>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
               <FaBroom className="text-5xl mx-auto mb-4 text-blue-600" />
               <h3 className="text-2xl font-semibold mb-3">Driveway Cleaning</h3>
               <p className="text-gray-600">Remove oil, rust, and years of buildup</p>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition">
               <FaImage className="text-5xl mx-auto mb-4 text-blue-600" />
               <h3 className="text-2xl font-semibold mb-3">Deck & Patio</h3>
               <p className="text-gray-600">Restore wood and concrete to look like new</p>
@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-16 bg-white">
+      <section id="gallery" className="py-16 bg-white text-black">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">Before & After Gallery</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -174,7 +174,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white text-black p-6 rounded-lg shadow-md">
               <FaQuoteLeft className="text-3xl text-blue-600 mb-4" />
               <p className="mb-4">&quot;Amazing results! My driveway looks brand new.&quot;</p>
               <div className="flex items-center">
@@ -188,7 +188,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white text-black p-6 rounded-lg shadow-md">
               <FaQuoteLeft className="text-3xl text-blue-600 mb-4" />
               <p className="mb-4">&quot;Professional and efficient. Highly recommend!&quot;</p>
               <div className="flex items-center">
