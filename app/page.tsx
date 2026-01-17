@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { FaArrowRight, FaPhone, FaEnvelope, FaHome, FaBroom, FaImage, FaQuoteLeft, FaStar, FaTrash, FaBars, FaTimes } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaHome, FaBroom, FaImage, FaQuoteLeft, FaStar, FaTrash, FaBars, FaTimes } from "react-icons/fa";
 
 export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -73,7 +73,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex items-center justify-center text-center text-white">
-        <Image src="/images/pressure-wash.jpg" alt="Pressure Washing Hero" fill className="object-cover brightness-50" />
+        <Image src="/images/caden.jpg" alt="Pressure Washing Hero" fill className="object-cover brightness-50" />
         <div className="relative z-10 px-6">
           <h2 className="text-5xl font-bold mb-4">The Grime Reaper</h2>
           <p className="text-2xl mb-8">Slaying Grime One Wash at a Time</p>
@@ -173,7 +173,7 @@ export default function Home() {
       <section id="testimonials" className="py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">What Our Clients Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <FaQuoteLeft className="text-3xl text-blue-600 mb-4" />
               <p className="mb-4">&quot;Amazing results! My driveway looks brand new.&quot;</p>
@@ -211,19 +211,19 @@ export default function Home() {
       <section id="contact" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">Get in Touch</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-8 w-full text-center">
             <div>
               <p className="text-lg mb-4">Ready to reap the grime? Contact us today!</p>
-              <ul className="space-y-2">
-                <li className="flex items-center">
+              <ul className="space-y-2 text-center w-full">
+                <li className="flex justify-center">
                   <FaPhone className="mr-2" /> <a href="tel:8033704697">(803) 370-4697</a>
                 </li>
-                <li className="flex items-center">
-                  <FaEnvelope className="mr-2" /> <a href="mailto:grimereaper@gmail.com">grimereaper@gmail.com</a>
+                <li className="flex justify-center">
+                  <FaEnvelope className="mr-2" /> <a href="mailto:rockhillgrimereaper@gmail.com">rockhillgrimereaper@gmail.com</a>
                 </li>
               </ul>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 placeholder="Your Name"
@@ -250,7 +250,7 @@ export default function Home() {
               <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">
                 Send Message
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </section>
